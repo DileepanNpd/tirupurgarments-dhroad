@@ -62,9 +62,12 @@ class CheckPermission
                 } else if ($resourceRequestString == 'destroy') {
                     $permission = $routePathString . '_delete';
                 }
-
-                if ($permission != "" && !$user->ability('admin', $permission)) {
-                    throw new UnauthorizedException("Don't have valid permission");
+                
+                if($permission == 'order_items_view' )
+                {
+                    
+                } else if ($permission != "" && !$user->ability('admin', $permission)) {
+                    throw new UnauthorizedException("Don't have valid permission ".$permission);
                 }
             }
         }

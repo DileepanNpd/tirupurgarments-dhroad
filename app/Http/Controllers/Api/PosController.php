@@ -200,8 +200,10 @@ class PosController extends ApiBaseController
         }
 
         $savingOnMrp = $totalMrp - $savedOrder->total;
+        
         $saving_percentage = $totalMrp > 0 ? number_format((float)($savingOnMrp / $totalMrp * 100), 2, '.', '') : 0;
-
+        
+        $savedOrder->total_mrp = $totalMrp;
         $savedOrder->saving_on_mrp = $savingOnMrp;
         $savedOrder->saving_percentage = $saving_percentage;
         $savedOrder->total_tax_on_items = $totalTax + $savedOrder->tax_amount;

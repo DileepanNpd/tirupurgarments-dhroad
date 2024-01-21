@@ -37,6 +37,9 @@
                         <template v-if="column.dataIndex === 'total_sales_price'">
                             {{ formatAmountCurrency(record.total_sales_price) }}
                         </template>
+                        <template v-if="column.dataIndex === 'total_profit'">
+                            {{ formatAmountCurrency(record.total_sales_price - (record.unit_sold *record.product.details.purchase_price)) }}
+                        </template>
                     </template>
                     <template #summary>
                         <a-table-summary-row>
@@ -54,6 +57,11 @@
                             <a-table-summary-cell :col-span="1">
                                 <a-typography-text strong>
                                     {{ formatAmountCurrency(totals.totalSalesPrice) }}
+                                </a-typography-text>
+                            </a-table-summary-cell>
+                            <a-table-summary-cell :col-span="1">
+                                <a-typography-text strong>
+                                    {{ formatAmountCurrency(totals.totalProfit) }}
                                 </a-typography-text>
                             </a-table-summary-cell>
                         </a-table-summary-row>
@@ -131,14 +139,17 @@ export default defineComponent({
         const totals = computed(() => {
             let totalPurchasePrice = 0;
             let totalSalesPrice = 0;
+            let totalProfit = 0;
             datatableVariables.table.data.forEach((tableRowData) => {
                 totalPurchasePrice +=
                     tableRowData.product.details.purchase_price * tableRowData.unit_sold;
                 totalSalesPrice += tableRowData.total_sales_price;
+                totalProfit = totalSalesPrice - totalPurchasePrice;
             });
             return {
                 totalPurchasePrice,
                 totalSalesPrice,
+                totalProfit,
             };
         });
 

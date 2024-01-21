@@ -41,6 +41,14 @@ const fields = () => {
                 return formatAmountCurrency(row.total_sales_price);
             }
         },
+        {
+            title:t("common.profit"),
+            dataIndex: "total_profit",
+            dbKey: "total_profit",
+            dataFormat: (row) => {
+                return formatAmountCurrency(row.total_sales_price);
+            }
+        },
     ];
 
     return {

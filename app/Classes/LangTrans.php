@@ -675,6 +675,7 @@ class LangTrans
             'import_products' => 'Import Products',
             'total_purchase_price' => 'Total Purchase Price',
             'total_sales_price' => 'Total Sales Price',
+            'total_profit' => 'Profit',
             'product_type' => 'Product Type',
             'search_scan_product' => 'Search Product Name / Item Code / Scan bar code',
         ],

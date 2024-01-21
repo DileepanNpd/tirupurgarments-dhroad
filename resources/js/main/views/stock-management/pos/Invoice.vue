@@ -112,6 +112,10 @@
                                 </td>
                             </tr>
                             <tr class="item-row-other">
+                                <td style="text-align: right; padding-right:15px;" colspan="4">MRP: {{ formatAmountCurrency(order.total_mrp) }}</td>
+                                <td style="text-align: right; padding-right:5px;" colspan="2">Sale Price: {{ formatAmountCurrency(order.subtotal) }}</td>
+                            </tr>
+                            <tr class="item-row-other">
                                 <td
                                     :colspan="
                                         selectedWarehouse.show_mrp_on_invoice ? 4 : 3

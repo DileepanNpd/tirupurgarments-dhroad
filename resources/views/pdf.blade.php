@@ -10,7 +10,7 @@
 
     <style>
         .invoice-box {
-            max-width: 800px;
+            max-width: 400px;
             margin: auto;
 
             font-size: 14px;
@@ -355,7 +355,7 @@
                         @if($order->warehouse->phone)
                         {{ $order->warehouse->phone }} <br />
                         @endif
-                        {{ $order->warehouse->email }}
+        c                {{ $order->warehouse->email }}
                     @else
                         <span style="font-size: 16px; font-weight: bold">{{ $order->user->name }}</span><br />
                         @if($order->user->address || $order->user->city || $order->user->zipcode)
@@ -396,6 +396,9 @@
                         <td>{{ App\Classes\Common::formatAmountCurrency($company->currency, $item->subtotal) }}</td>
                     </tr>
                     @endforeach
+                     <tr class="item heading-tow">
+                        <td colspan=6></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
