@@ -9,14 +9,9 @@
     >
         <div id="pos-invoice">
             <div style="max-width: 400px; margin: 0px auto" v-if="order && order.xid">
-                <div class="invoice-header">
-                    <img
-                        class="invoice-logo"
-                        :src="selectedWarehouse.logo_url"
-                        :alt="selectedWarehouse.name"
-                    />
-                </div>
                 <div class="company-details">
+                    <h2>Pavi Tex</h2>
+                    <h2>Tirupur Garments</h2>
                     <h2>GST: 33ANLPT1049G1ZY</h2>
                     <h2>{{ selectedWarehouse.name }}</h2>
                     <p class="company-address">
