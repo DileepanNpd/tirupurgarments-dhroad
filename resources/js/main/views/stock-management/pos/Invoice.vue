@@ -96,7 +96,7 @@
                                 :key="item.xid"
                             >
                                 <td>{{ index + 1 }}</td>
-                                <td style="overflow-wrap: anywhere; width: 25%;">{{ item.product.name }}</td>
+                                <td style="overflow-wrap: anywhere; width: 25%; min-width:125px !important;">{{ item.product.name }}</td>
                                 <td>{{ item.quantity + "" + item.unit.short_name }}</td>
                                 <td v-if="selectedWarehouse.show_mrp_on_invoice">
                                     {{ item.mrp ? formatAmountCurrency(item.mrp) : "-" }}

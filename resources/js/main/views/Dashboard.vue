@@ -19,7 +19,7 @@
             </a-col>
         </a-row>
 
-        <div class="mt-30 mb-20">
+        <div class="mt-30 mb-20" v-if="permsArray.includes('brands_create') || permsArray.includes('admin')">
             <a-row :gutter="[15, 15]">
                 <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
                     <StateWidget>
@@ -95,7 +95,7 @@
             </a-row>
         </div>
 
-        <a-row :gutter="[18, 18]" class="mt-30 mb-20">
+        <a-row :gutter="[18, 18]" class="mt-30 mb-20" v-if="permsArray.includes('brands_create') || permsArray.includes('admin')">
             <a-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
                 <a-card :title="$t('dashboard.top_selling_product')">
                     <TopProducts :data="responseData" />
@@ -259,7 +259,7 @@
             </a-col>
         </a-row>
 
-        <a-row :gutter="[18, 18]" class="mt-30 mb-20">
+        <a-row :gutter="[18, 18]" class="mt-30 mb-20" v-if="permsArray.includes('brands_create') || permsArray.includes('admin')">
             <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <a-card :title="$t('payments.payments')">
                     <PaymentsChart :data="responseData" />
@@ -285,7 +285,7 @@
             </a-col>
         </a-row>
 
-        <a-row :gutter="[18, 18]" class="mt-30 mb-20">
+        <a-row :gutter="[18, 18]" class="mt-30 mb-20" v-if="permsArray.includes('brands_create') || permsArray.includes('admin')">
             <a-col :xs="24" :sm="24" :md="12" :lg="16" :xl="16">
                 <a-card
                     :title="$t('menu.stock_alert')"
