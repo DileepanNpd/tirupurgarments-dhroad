@@ -10,20 +10,21 @@
         <div id="pos-invoice">
             <div style="max-width: 400px; margin: 0px auto" v-if="order && order.xid">
                 <div class="company-details">
-                    <h2>Pavi Tex</h2>
+                    <!--h2>Pavi Tex</h2-->
                     <h2>Tirupur Garments</h2>
-                    <h2>GST: 33ANLPT1049G1ZY</h2>
-                    <h2>{{ selectedWarehouse.name }}</h2>
-                    <p class="company-address">
-                        {{ selectedWarehouse.address }}
-                    </p>
+                    <!--h2>GST: {{ selectedWarehouse.address }}</h2-->
+                    <!--<h2>{{ selectedWarehouse.name }}</h2>-->
+                    <h2>Direct Factory Outlet<br>[Dharapuram Road, Palladam]</h2>
+                    <!--<p class="company-address">-->
+                    <!--    {{ selectedWarehouse.address }}-->
+                    <!--</p>-->
                     <h4 style="margin-bottom: 0px">
                         {{ $t("common.phone") }}: {{ selectedWarehouse.phone }}
                     </h4>
                     <h4>{{ $t("common.email") }}: {{ selectedWarehouse.email }}</h4>
                 </div>
                 <div class="tax-invoice-details">
-                    <h3 class="tax-invoice-title">{{ $t("sales.tax_invoice") }}</h3>
+                    <h3 class="tax-invoice-title">Invoice</h3>
                     <table class="invoice-customer-details">
                         <tr>
                             <td style="width: 50%">
@@ -110,19 +111,19 @@
                                 <td style="text-align: right; padding-right:15px;" colspan="4">MRP: {{ formatAmountCurrency(order.total_mrp) }}</td>
                                 <td style="text-align: right; padding-right:5px;" colspan="2">Sale Price: {{ formatAmountCurrency(order.subtotal) }}</td>
                             </tr>
-                            <tr class="item-row-other">
-                                <td
-                                    :colspan="
-                                        selectedWarehouse.show_mrp_on_invoice ? 4 : 3
-                                    "
-                                    style="text-align: right"
-                                >
-                                    {{ $t("stock.order_tax") }}
-                                </td>
-                                <td colspan="2" style="text-align: right">
-                                    {{ formatAmountCurrency(order.tax_amount) }}
-                                </td>
-                            </tr>
+                            <!--<tr class="item-row-other">-->
+                            <!--    <td-->
+                            <!--        :colspan="-->
+                            <!--            selectedWarehouse.show_mrp_on_invoice ? 4 : 3-->
+                            <!--        "-->
+                            <!--        style="text-align: right"-->
+                            <!--    >-->
+                            <!--        {{ $t("stock.order_tax") }}-->
+                            <!--    </td>-->
+                            <!--    <td colspan="2" style="text-align: right">-->
+                            <!--        {{ formatAmountCurrency(order.tax_amount) }}-->
+                            <!--    </td>-->
+                            <!--</tr>-->
                             <tr class="item-row-other">
                                 <td
                                     :colspan="
@@ -152,28 +153,28 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tax-invoice-totals">
-                    <table style="width: 100%">
-                        <tr>
-                            <td style="width: 30%">
-                                <h3 style="margin-bottom: 0px">
-                                    {{ $t("common.items") }}: {{ order.total_items }}
-                                </h3>
-                            </td>
-                            <td style="width: 30%">
-                                <h3 style="margin-bottom: 0px">
-                                    {{ $t("common.qty") }}: {{ order.total_quantity }}
-                                </h3>
-                            </td>
-                            <td style="width: 40%; text-align: center">
-                                <h3 style="margin-bottom: 0px">
-                                    {{ $t("common.total") }}:
-                                    {{ formatAmountCurrency(order.total) }}
-                                </h3>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                <!--<div class="tax-invoice-totals">-->
+                <!--    <table style="width: 100%">-->
+                <!--        <tr>-->
+                <!--            <td style="width: 30%">-->
+                <!--                <h3 style="margin-bottom: 0px">-->
+                <!--                    {{ $t("common.items") }}: {{ order.total_items }}-->
+                <!--                </h3>-->
+                <!--            </td>-->
+                <!--            <td style="width: 30%">-->
+                <!--                <h3 style="margin-bottom: 0px">-->
+                <!--                    {{ $t("common.qty") }}: {{ order.total_quantity }}-->
+                <!--                </h3>-->
+                <!--            </td>-->
+                <!--            <td style="width: 40%; text-align: center">-->
+                <!--                <h3 style="margin-bottom: 0px">-->
+                <!--                    {{ $t("common.total") }}:-->
+                <!--                    {{ formatAmountCurrency(order.total) }}-->
+                <!--                </h3>-->
+                <!--            </td>-->
+                <!--        </tr>-->
+                <!--    </table>-->
+                <!--</div>-->
                 <div class="paid-amount-deatils">
                     <table style="width: 100%">
                         <thead style="background: #eee">
@@ -243,10 +244,10 @@
                         {{ $t("invoice.total_discount") }} :
                         {{ order.saving_percentage }}%
                     </p>
-                    <p>
-                        {{ $t("invoice.total_tax") }} :
-                        {{ formatAmountCurrency(order.total_tax_on_items) }}
-                    </p>
+                    <!--<p>-->
+                    <!--    {{ $t("invoice.total_tax") }} :-->
+                    <!--    {{ formatAmountCurrency(order.total_tax_on_items) }}-->
+                    <!--</p>-->
                 </div>
             </div>
         </div>

@@ -388,7 +388,8 @@ class ProductController extends ApiBaseController
 
         foreach ($products as $product) {
             $productDetails = $product->details;
-            $tax = Tax::find($productDetails->tax_id);
+            $npd_taxId = $productDetails->tax_id ?? 0; // Default ID if null
+            $tax = Tax::find($npd_taxId);
 
             if ($orderType == 'purchases' || $orderType == 'quotations' || ($orderType == 'sales' && $productDetails->current_stock > 0) || ($orderType == 'sales-returns') || ($orderType == 'purchase-returns' && $productDetails->current_stock > 0) || ($orderType == 'stock-transfers' && $productDetails->current_stock > 0)) {
                 $stockQuantity = $productDetails->current_stock;
