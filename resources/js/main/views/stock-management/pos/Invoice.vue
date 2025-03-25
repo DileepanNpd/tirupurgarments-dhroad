@@ -108,8 +108,8 @@
                                 </td>
                             </tr>
                             <tr class="item-row-other">
-                                <td style="text-align: right; padding-right:15px;" colspan="4">MRP: {{ formatAmountCurrency(order.total_mrp) }}</td>
-                                <td style="text-align: right; padding-right:5px;" colspan="2">Sale Price: {{ formatAmountCurrency(order.subtotal) }}</td>
+                                <td style="text-align: right; padding-right:15px;" colspan="3">MRP: {{ formatAmountCurrency(order.total_mrp) }}</td>
+                                <td style="text-align: right; padding-right:0px;" colspan="3">Sale Price: {{ formatAmountCurrency(order.subtotal) }}</td>
                             </tr>
                             <!--<tr class="item-row-other">-->
                             <!--    <td-->
@@ -153,28 +153,28 @@
                         </tbody>
                     </table>
                 </div>
-                <!--<div class="tax-invoice-totals">-->
-                <!--    <table style="width: 100%">-->
-                <!--        <tr>-->
-                <!--            <td style="width: 30%">-->
-                <!--                <h3 style="margin-bottom: 0px">-->
-                <!--                    {{ $t("common.items") }}: {{ order.total_items }}-->
-                <!--                </h3>-->
-                <!--            </td>-->
-                <!--            <td style="width: 30%">-->
-                <!--                <h3 style="margin-bottom: 0px">-->
-                <!--                    {{ $t("common.qty") }}: {{ order.total_quantity }}-->
-                <!--                </h3>-->
-                <!--            </td>-->
-                <!--            <td style="width: 40%; text-align: center">-->
-                <!--                <h3 style="margin-bottom: 0px">-->
-                <!--                    {{ $t("common.total") }}:-->
-                <!--                    {{ formatAmountCurrency(order.total) }}-->
-                <!--                </h3>-->
-                <!--            </td>-->
-                <!--        </tr>-->
-                <!--    </table>-->
-                <!--</div>-->
+                <div class="tax-invoice-totals">
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="width: 30%">
+                                <h3 style="margin-bottom: 0px">
+                                    {{ $t("common.items") }}: {{ order.total_items }}
+                                </h3>
+                            </td>
+                            <td style="width: 30%">
+                                <h3 style="margin-bottom: 0px">
+                                    {{ $t("common.qty") }}: {{ order.total_quantity }}
+                                </h3>
+                            </td>
+                            <td style="width: 40%; text-align: center">
+                                <h3 style="margin-bottom: 0px">
+                                    {{ $t("common.total") }}:
+                                    {{ formatAmountCurrency(order.total) }}
+                                </h3>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 <div class="paid-amount-deatils">
                     <table style="width: 100%">
                         <thead style="background: #eee">
@@ -292,7 +292,7 @@ export default defineComponent({
             var invoiceContent = document.getElementById("pos-invoice").innerHTML;
             var newWindow = window.open("", "", "height=500, width=500");
             newWindow.document.write(
-                `<link rel="stylesheet" href="${posInvoiceCssUrl}"><html><body>`
+                `<link rel="stylesheet" href="${posInvoiceCssUrl}"><html><style scoped>table {border-collapse: collapse;width: 100%;}table, th, td {border: 1px solid #bbb;}th, td {padding: 1px;text-align: center;}</style><body>`
             );
             newWindow.document.write(invoiceContent);
             newWindow.document.write("</body></html>");
@@ -310,3 +310,19 @@ export default defineComponent({
     },
 });
 </script>
+
+<style scoped>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid #bbb;
+}
+
+th, td {
+    padding: 1px;
+    text-align: center;
+}
+</style>

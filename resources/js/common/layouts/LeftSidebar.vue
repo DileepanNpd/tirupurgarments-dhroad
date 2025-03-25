@@ -29,7 +29,7 @@
             <img
                 :style="{
                     width: '150px',
-                    height: '53px',
+                    height: '150px',
                     paddingLeft: appSetting.rtl ? '0px' : '30px',
                     paddingRight: appSetting.rtl ? '30px' : '0px',
                     paddingTop: '5px',
