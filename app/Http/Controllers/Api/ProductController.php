@@ -390,9 +390,10 @@ class ProductController extends ApiBaseController
             $productDetails = $product->details;
             $npd_taxId = $productDetails->tax_id ?? 0; // Default ID if null
             $tax = Tax::find($npd_taxId);
+            $npd_currentStock = $productDetails->current_stock ?? 0;
 
-            if ($orderType == 'purchases' || $orderType == 'quotations' || ($orderType == 'sales' && $productDetails->current_stock > 0) || ($orderType == 'sales-returns') || ($orderType == 'purchase-returns' && $productDetails->current_stock > 0) || ($orderType == 'stock-transfers' && $productDetails->current_stock > 0)) {
-                $stockQuantity = $productDetails->current_stock;
+            if ($orderType == 'purchases' || $orderType == 'quotations' || ($orderType == 'sales' && $npd_currentStock > 0) || ($orderType == 'sales-returns') || ($orderType == 'purchase-returns' && $npd_currentStock > 0) || ($orderType == 'stock-transfers' && $npd_currentStock > 0)) {
+                $stockQuantity = $npd_currentStock;
                 $unit = $product->unit_id != null ? Unit::find($product->unit_id) : null;
 
                 if ($orderType == 'purchases' || $orderType == 'purchase-returns' || $orderType == 'stock-transfers') {
@@ -404,6 +405,7 @@ class ProductController extends ApiBaseController
                 }
 
                 $singleUnitPrice = $unitPrice;
+                $mrp = $productDetails->mrp ?? 0;
 
                 if ($tax && $tax->rate != '') {
                     $taxRate = $tax->rate;
@@ -442,6 +444,7 @@ class ProductController extends ApiBaseController
                     'quantity'    =>  1,
                     'stock_quantity'    =>  $stockQuantity,
                     'unit_short_name'    =>  $unit ? $unit->short_name : '',
+                    'mrp'    =>  $mrp,
                 ];
             }
 

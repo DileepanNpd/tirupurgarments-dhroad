@@ -332,8 +332,20 @@
                                 zIndex: 1,
                             }"
                         >
+                            <a-row>
+                                <a-col class="mb-10" style="width:100%">
+                                    <div style="display: flex; justify-content: space-evenly;">
+                                        <div><small>{{ $t("product.tax") }} : {{ formatAmountCurrency(formData.tax_amount) }} </small></div>
+                                        <div><small>{{ $t("product.discount") }} : {{ formatAmountCurrency(formData.discount) }}</small></div> 
+                                        <div><small>MRP : {{ formatAmountCurrency(formData.mrpTotal) }}</small></div>
+                                        <div><small>MRP Discount: {{ formatAmountCurrency(formData.mrpDiscount) }}</small></div>
+                                        <div><small>Items : {{ formData.items }} </small></div> 
+                                        <div><small>Qty : {{ formData.quantities }}</small></div>
+                                    </div>
+                                </a-col>
+                            </a-row>
                             <a-row :gutter="16">
-                                <a-col :xs="24" :sm="24" :md="10" :lg="10" :xl="10">
+                                <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
                                     <a-row
                                         :gutter="16"
                                         :style="{ background: '#dbdbdb', padding: '5px' }"
@@ -366,22 +378,8 @@
                                         </a-col>
                                     </a-row>
                                 </a-col>
-                                <a-col
-                                    :xs="24"
-                                    :sm="24"
-                                    :md="6"
-                                    :lg="6"
-                                    :xl="6"
-                                    class="mt-10"
-                                >
-                                    <small>
-                                        {{ $t("product.tax") }} :
-                                        {{ formatAmountCurrency(formData.tax_amount) }} |
-                                        {{ $t("product.discount") }} :
-                                        {{ formatAmountCurrency(formData.discount) }}
-                                    </small>
-                                </a-col>
-                                <a-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
+                                
+                                <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
                                     <a-space>
                                         <a-button
                                             type="primary"
@@ -401,6 +399,7 @@
                                     </a-space>
                                 </a-col>
                             </a-row>
+                            
                         </div>
                     </div>
                 </div>
@@ -1067,7 +1066,7 @@ export default {
                     sn: selectedProducts.value.length + 1,
                     unit_price: formatAmount(newProduct.unit_price),
                     tax_amount: formatAmount(newProduct.tax_amount),
-                    subtotal: formatAmount(newProduct.subtotal),
+                    subtotal: formatAmount(newProduct.subtotal)
                 });
                 state.orderSearchTerm = undefined;
                 state.products = [];
@@ -1177,9 +1176,18 @@ export default {
         };
 
         const recalculateFinalTotal = () => {
+            let items = 0;
+            let quantities = 0;
+            let mrpTotal = 0;
+            let mrpDiscount = 0;
             let total = 0;
             selectedProducts.value.map((selectedProduct) => {
+                items++;
+                quantities += selectedProduct.quantity;
                 total += selectedProduct.subtotal;
+                let currentMrpTotal = selectedProduct.mrp * selectedProduct.quantity;
+                mrpTotal += currentMrpTotal;
+                mrpDiscount += currentMrpTotal - selectedProduct.subtotal;
             });
 
             var discountAmount = 0;
@@ -1204,9 +1212,13 @@ export default {
 
             total = total + parseFloat(formData.value.shipping);
 
-            formData.value.subtotal = formatAmount(total + tax);
+            formData.value.subtotal = formatAmount(total);
             formData.value.tax_amount = formatAmount(tax);
             formData.value.discount = discountAmount;
+            formData.value.mrpTotal = mrpTotal;
+            formData.value.mrpDiscount = mrpDiscount;
+            formData.value.quantities = quantities;
+            formData.value.items = items;
         };
 
         const showDeleteConfirm = (product) => {
@@ -1448,7 +1460,7 @@ export default {
 }
 
 .left-pos-middle-table {
-    height: calc(100vh - 420px);
+    height: calc(100vh - 440px);
     overflow-y: overlay;
 
     .ant-card-body {

@@ -33,7 +33,8 @@ class PosController extends ApiBaseController
             'product_details.sales_tax_type',
             'product_details.tax_id',
             'product_details.current_stock',
-            'taxes.rate'
+            'taxes.rate',
+            'product_details.mrp'
         )
             ->join('product_details', 'product_details.product_id', '=', 'products.id')
             ->leftJoin('taxes', 'taxes.id', '=', 'product_details.tax_id')
@@ -57,7 +58,8 @@ class PosController extends ApiBaseController
             $products = $products->where('brand_id', '=', $brandId);
         }
 
-
+        $products = $products->limit(100);
+        
         $products =    $products->get();
 
         foreach ($products as $product) {
@@ -67,6 +69,7 @@ class PosController extends ApiBaseController
             $taxType = $product->sales_tax_type;
 
             $unitPrice = $product->sales_price;
+            $mrp = $product->mrp;
             $singleUnitPrice = $unitPrice;
 
             if ($product->rate != '') {
@@ -106,6 +109,7 @@ class PosController extends ApiBaseController
                 'quantity'    =>  1,
                 'stock_quantity'    =>  $stockQuantity,
                 'unit_short_name'    =>  $unit ? $unit->short_name : '',
+                'mrp'    =>  $mrp
             ];
         }
 
@@ -123,7 +127,6 @@ class PosController extends ApiBaseController
 
     public function savePosPayments()
     {
-
         $request = request();
         $loggedInUser = user();
         $warehouse = warehouse();
@@ -185,9 +188,9 @@ class PosController extends ApiBaseController
                 $orderPayment->save();
             }
         }
-
+        
         Common::updateOrderAmount($order->id);
-
+        
         $savedOrder = Order::select('id', 'unique_id', 'invoice_number', 'user_id', 'staff_user_id', 'order_date', 'discount', 'shipping', 'tax_amount', 'subtotal', 'total', 'paid_amount', 'due_amount', 'total_items', 'total_quantity')
             ->with(['user:id,name', 'items:id,order_id,product_id,unit_id,unit_price,subtotal,quantity,mrp,total_tax', 'items.product:id,name', 'items.unit:id,name,short_name', 'orderPayments:id,order_id,payment_id,amount', 'orderPayments.payment:id,payment_mode_id', 'orderPayments.payment.paymentMode:id,name', 'staffMember:id,name'])
             ->find($order->id);
