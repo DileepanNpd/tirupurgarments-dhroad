@@ -28,14 +28,16 @@
         <div v-else>
             <img
                 :style="{
-                    width: '150px',
-                    height: '150px',
+                    width: '50px',
+                    height: '50px',
                     paddingLeft: appSetting.rtl ? '0px' : '30px',
                     paddingRight: appSetting.rtl ? '30px' : '0px',
                     paddingTop: '5px',
                     paddingBottom: '20px',
                     marginLeft: appSetting.rtl ? '0px' : '10px',
                     marginRight: appSetting.rtl ? '10px' : '0px',
+                    margin: '0 auto', 
+                    display: 'block', 
                 }"
                 :src="
                     appSetting.left_sidebar_theme == 'dark'

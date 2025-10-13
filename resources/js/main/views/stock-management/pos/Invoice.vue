@@ -49,7 +49,7 @@
                 <div class="tax-invoice-items">
                     <table style="width: 100%">
                         <thead style="background: #eee">
-                            <td style="width: 5%">#</td>
+                            <!--<td style="width: 5%">#</td>-->
                             <td style="width: 25%">{{ $t("common.item") }}</td>
                             <td
                                 :style="{
@@ -96,7 +96,7 @@
                                 v-for="(item, index) in order.items"
                                 :key="item.xid"
                             >
-                                <td>{{ index + 1 }}</td>
+                                <!--<td>{{ index + 1 }}</td>-->
                                 <td style="overflow-wrap: anywhere; width: 25%; min-width:125px !important;">{{ item.product.name }}</td>
                                 <td>{{ item.quantity + "" + item.unit.short_name }}</td>
                                 <td v-if="selectedWarehouse.show_mrp_on_invoice">
