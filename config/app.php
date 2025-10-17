@@ -269,4 +269,6 @@ return [
             'password',
         ],
     ],
+
+    'cleanup_api_token' => env('CLEANUP_API_TOKEN', null),
 ];
