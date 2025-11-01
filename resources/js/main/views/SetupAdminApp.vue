@@ -157,10 +157,10 @@
     >
         <a-result>
             <template #title>
-                <span v-if="setupCompleted" :style="{ color: '#7676e3' }">
+                <span v-if="setupCompleted" :style="{ color: '#05a045' }">
                     {{ $t("setup_company.setup_complete_message") }}
                 </span>
-                <span v-else :style="{ color: '#7676e3' }">
+                <span v-else :style="{ color: '#05a045' }">
                     {{ $t("setup_company.setup_running_message") }}
                 </span>
             </template>

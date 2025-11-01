@@ -2,7 +2,7 @@
     <div class="loading-app-container">
         <a-result>
             <template #title>
-                <span :style="{ color: '#7676e3' }">
+                <span :style="{ color: '#05a045' }">
                     {{ $t("messages.loading_app_message") }}
                 </span>
             </template>
