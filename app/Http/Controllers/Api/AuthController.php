@@ -520,7 +520,7 @@ class AuthController extends ApiBaseController
         $waehouse = warehouse();
         $warehouseId = $waehouse->id;
 
-        $colors = ["#20C997", "#5F63F2", "#ffa040", "#FFCD56", "#ff6385"];
+        $colors = ["#20C997", "#05a045", "#ffa040", "#FFCD56", "#ff6385"];
 
         $maxSellingProducts = OrderItem::select('order_items.product_id', DB::raw('sum(order_items.subtotal) as total_amount'))
             ->join('orders', 'orders.id', '=', 'order_items.order_id')
