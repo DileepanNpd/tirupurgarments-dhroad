@@ -1,5 +1,5 @@
 const primaryColor = '#05a045';
-const primaryHover = '#4347D9';
+const primaryHover = '#05a045';
 const secondaryColor = '#FF69A5';
 const secondaryHover = '#E34A87';
 const linkColor = '#1890ff';
@@ -11,8 +11,8 @@ const warningColor = '#FA8B0C';
 const warningHover = '#D47407';
 const errorColor = '#f5222d';
 const errorHover = '#E30D0F';
-const infoColor = '#2C99FF';
-const infoHover = '#0D79DF';
+const infoColor = '#05a045';
+const infoHover = '#05a045';
 const darkColor = '#272B41';
 const darkHover = '#131623';
 const grayColor = '#5A5F7D';
