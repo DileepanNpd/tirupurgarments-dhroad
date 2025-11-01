@@ -33,16 +33,17 @@ class OrderCleanupController extends Controller
         }
         Log::info("Monthly Orders Cleanup");
         $deleted = DB::table('orders')
-            ->where('invoice_type', 'pos')
-            ->where('created_at', '<', now()->startOfMonth())
-            ->whereNotIn('id', function($query) {
-                $query->select('op.order_id')
-                      ->from('payments as p')
-                      ->leftJoin('order_payments as op', 'p.id', '=', 'op.payment_id')
-                      ->where('p.payment_type', 'in')
-                      ->where('p.payment_mode_id', '>', 1)
-                      ->where('p.date', '>', now()->startOfMonth());
-            })->delete();
+                        ->where('invoice_type', 'pos')
+                        ->where('created_at', '<', now()->subMonth()->startOfMonth()) // delete before previous month
+                        ->whereNotIn('id', function($query) {
+                            $query->select('op.order_id')
+                                  ->from('payments as p')
+                                  ->leftJoin('order_payments as op', 'p.id', '=', 'op.payment_id')
+                                  ->where('p.payment_type', 'in')
+                                  ->where('p.payment_mode_id', '>', 1)
+                                  ->where('p.date', '>', now()->subMonth()->startOfMonth()); // consistent filter
+                        })
+                        ->delete();
         Log::info("Orders Deleted: ".$deleted);
             
         return response()->json([
