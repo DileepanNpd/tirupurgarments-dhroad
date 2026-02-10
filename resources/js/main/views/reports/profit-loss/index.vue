@@ -101,6 +101,12 @@
                             </a-descriptions-item>
                             <a-descriptions-item>
                                 <template #label>
+                                    Total Pieces
+                                </template>
+                                {{ reportData.sales_quantities }}
+                            </a-descriptions-item>
+                            <a-descriptions-item>
+                                <template #label>
                                     {{ $t("stock_transfer.stock_transfer_transfered") }}
                                     (+)
                                 </template>
@@ -212,6 +218,12 @@
                                             dateWiseReportResult.result.sales_returns
                                         )
                                     }}
+                                </a-descriptions-item>
+                                <a-descriptions-item>
+                                    <template #label>
+                                        Total Pieces
+                                    </template>
+                                    {{ dateWiseReportResult.result.sales_quantities }}
                                 </a-descriptions-item>
                                 <a-descriptions-item>
                                     <template #label>

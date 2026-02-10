@@ -214,6 +214,7 @@ class ReportController extends ApiBaseController
         $paymentReceived = $paymentReceived->where('payments.warehouse_id', $warehouse->id);
         $paymentSent = $paymentSent->where('payments.warehouse_id', $warehouse->id);
 
+        $sales_quantities = $sales->sum('total_quantity');
         $sales = $sales->sum('total');
         $purchases = $purchases->sum('total');
         $salesReturns = $salesReturns->sum('total');
@@ -230,6 +231,7 @@ class ReportController extends ApiBaseController
 
         return [
             'sales' => $sales,
+            'sales_quantities' => $sales_quantities,
             'purchases' => $purchases,
             'sales_returns' => $salesReturns,
             'purchase_returns' => $purchaseReturns,

@@ -39,6 +39,14 @@ const fields = () => {
             }
         },
         {
+            title: t("menu.sales"),
+            dataIndex: "sales_quantities",
+            dbKey: "sales_quantities",
+            dataFormat: (row) => {
+                return formatAmountCurrency(row.sales_quantities);
+            }
+        },
+        {
             title: t("menu.expenses"),
             dataIndex: "expenses",
             dbKey: "expenses",
@@ -95,6 +103,14 @@ const fields = () => {
             dbKey: "sales_returns",
             dataFormat: (row) => {
                 return formatAmountCurrency(row.result.sales_returns);
+            }
+        },
+        {
+            title: t("menu.sales"),
+            dataIndex: "sales_quantities",
+            dbKey: "sales_quantities",
+            dataFormat: (row) => {
+                return formatAmountCurrency(row.result.sales_quantities);
             }
         },
         {
