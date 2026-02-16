@@ -43,10 +43,15 @@
                     </template>
                     <template #summary>
                         <a-table-summary-row>
-                            <a-table-summary-cell :col-span="2"> </a-table-summary-cell>
+                            <a-table-summary-cell :col-span="1"> </a-table-summary-cell>
                             <a-table-summary-cell :col-span="1">
                                 <a-typography-text strong>
                                     {{ $t("common.total") }}
+                                </a-typography-text>
+                            </a-table-summary-cell>
+                            <a-table-summary-cell :col-span="1">
+                                <a-typography-text strong>
+                                    {{ totals.totalUnitsSold }} pcs
                                 </a-typography-text>
                             </a-table-summary-cell>
                             <a-table-summary-cell :col-span="1">
@@ -140,16 +145,19 @@ export default defineComponent({
             let totalPurchasePrice = 0;
             let totalSalesPrice = 0;
             let totalProfit = 0;
+            let totalUnitsSold = 0;
             datatableVariables.table.data.forEach((tableRowData) => {
                 totalPurchasePrice +=
                     tableRowData.product.details.purchase_price * tableRowData.unit_sold;
                 totalSalesPrice += tableRowData.total_sales_price;
                 totalProfit = totalSalesPrice - totalPurchasePrice;
+                totalUnitsSold += tableRowData.unit_sold;
             });
             return {
                 totalPurchasePrice,
                 totalSalesPrice,
                 totalProfit,
+                totalUnitsSold,
             };
         });
 
