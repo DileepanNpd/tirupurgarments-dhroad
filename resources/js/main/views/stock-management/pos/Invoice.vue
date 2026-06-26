@@ -11,10 +11,10 @@
             <div style="max-width: 400px; margin: 0px auto" v-if="order && order.xid">
                 <div class="company-details">
                     <!--h2>Pavi Tex</h2-->
-                    <h2>Tirupur Garments</h2>
+                    <h2>Tirupur Garments - Dharapuram</h2>
                     <!--h2>GST: {{ selectedWarehouse.address }}</h2-->
                     <!--<h2>{{ selectedWarehouse.name }}</h2>-->
-                    <h2>Direct Factory Outlet<br>[Dharapuram Road, Palladam]</h2>
+                    <!--<h2>Direct Factory Outlet<br>[Dharapuram Road, Palladam]</h2>-->
                     <!--<p class="company-address">-->
                     <!--    {{ selectedWarehouse.address }}-->
                     <!--</p>-->
